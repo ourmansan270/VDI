@@ -1,0 +1,2 @@
+# VDI
+citrix, horizon, AVD
