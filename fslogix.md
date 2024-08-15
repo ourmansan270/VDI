@@ -2,6 +2,128 @@
 
 ### **Deployment and Configuration**
 
+FSLogix Profile Container and Office Container settings can be configured using Group Policy Objects (GPOs). Below are detailed descriptions of the Group Policy keys used to manage FSLogix settings for Profile Containers and Office Containers.
+
+### **FSLogix GPO Keys for Profile Container**
+
+#### **1. Profile Container**
+
+**Registry Path:** `HKLM\Software\FSLogix\Profiles`
+
+**GPO Key Entries:**
+
+- **Enabled**
+  - **Key:** `Enabled`
+  - **Type:** DWORD
+  - **Value:** 1 (Enabled), 0 (Disabled)
+  - **Description:** Enables or disables the FSLogix Profile Container. Set to 1 to enable profile containers.
+
+- **VHD Locations**
+  - **Key:** `VHDLocations`
+  - **Type:** String
+  - **Value:** Path to the network share or file server where VHD files will be stored.
+  - **Description:** Specifies the location where profile VHD/VHDX files are stored.
+
+- **ProfileType**
+  - **Key:** `ProfileType`
+  - **Type:** DWORD
+  - **Value:** 0 (Local), 1 (Network)
+  - **Description:** Specifies the type of profile container to use. For network profiles, use 1.
+
+- **ExcludeFolders**
+  - **Key:** `ExcludeFolders`
+  - **Type:** String
+  - **Value:** List of folders to exclude from the profile container, separated by semicolons.
+  - **Description:** Folders that should not be included in the profile container.
+
+- **MaxProfileSizeMB**
+  - **Key:** `MaxProfileSizeMB`
+  - **Type:** DWORD
+  - **Value:** Maximum profile size in megabytes.
+  - **Description:** Sets the maximum size limit for the profile container.
+
+- **AutoSave**
+  - **Key:** `AutoSave`
+  - **Type:** DWORD
+  - **Value:** 1 (Enabled), 0 (Disabled)
+  - **Description:** Enables or disables automatic saving of changes to the profile container.
+
+- **MergeConfig**
+  - **Key:** `MergeConfig`
+  - **Type:** DWORD
+  - **Value:** 1 (Enabled), 0 (Disabled)
+  - **Description:** Enables or disables profile container merge configurations.
+
+#### **2. Office Container**
+
+**Registry Path:** `HKLM\Software\FSLogix\Office`
+
+**GPO Key Entries:**
+
+- **Enabled**
+  - **Key:** `Enabled`
+  - **Type:** DWORD
+  - **Value:** 1 (Enabled), 0 (Disabled)
+  - **Description:** Enables or disables the FSLogix Office Container.
+
+- **OfficeContainerLocation**
+  - **Key:** `OfficeContainerLocation`
+  - **Type:** String
+  - **Value:** Path to the network share or file server for storing Office container VHD/VHDX files.
+  - **Description:** Specifies the location where Office VHD/VHDX files are stored.
+
+- **ContainerSizeMB**
+  - **Key:** `ContainerSizeMB`
+  - **Type:** DWORD
+  - **Value:** Size limit of the Office container in megabytes.
+  - **Description:** Sets the maximum size limit for the Office container.
+
+- **ExcludeOfficeFiles**
+  - **Key:** `ExcludeOfficeFiles`
+  - **Type:** String
+  - **Value:** List of Office files or folders to exclude from the Office container, separated by semicolons.
+  - **Description:** Specifies which Office files or folders should not be included in the Office container.
+
+### **Sample GPO Configuration Steps**
+
+1. **Open Group Policy Management Console (GPMC):**
+   - Run `gpmc.msc` from the Run dialog or Command Prompt.
+
+2. **Create or Edit GPO:**
+   - Navigate to the desired Organizational Unit (OU).
+   - Right-click and select `Create a GPO in this domain, and Link it here...` or select an existing GPO to edit.
+
+3. **Edit GPO:**
+   - Right-click the GPO and select `Edit...`.
+
+4. **Navigate to FSLogix Settings:**
+   - Go to `Computer Configuration` → `Policies` → `Administrative Templates` → `FSLogix`.
+
+5. **Configure FSLogix Settings:**
+   - Set the policies according to your requirements using the FSLogix settings listed above.
+
+6. **Apply and Update GPO:**
+   - Save the changes and close the editor.
+   - Run `gpupdate /force` on the target machines to apply the new policies.
+
+### **Example of Setting Up FSLogix Profile Container via GPO**
+
+1. **Enable FSLogix Profile Containers:**
+   - Set the `Enabled` key to `1` in `HKLM\Software\FSLogix\Profiles`.
+
+2. **Specify VHD Location:**
+   - Set `VHDLocations` to `\\server\share\profiles`.
+
+3. **Exclude Specific Folders:**
+   - Set `ExcludeFolders` to `Local Settings;Temporary Internet Files`.
+
+4. **Configure Size Limit:**
+   - Set `MaxProfileSizeMB` to `20480` (20 GB).
+
+5. **Enable AutoSave:**
+   - Set `AutoSave` to `1`.
+
+
 1. **How do you deploy FSLogix in a Citrix environment?**
 
    **Answer:** To deploy FSLogix in a Citrix environment:
