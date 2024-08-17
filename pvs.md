@@ -144,3 +144,30 @@
     - **Backup vDisks**: Backup vDisk files and associated data to ensure recovery in case of failure.
     - **Restore Configuration**: To restore, use the backup files to restore configurations and vDisks to their previous state.
     - **Verify Restoration**: Check the Provisioning Server and target devices to ensure that the restoration process was successful and configurations are correct.
+### ** Keywords ** 
+
+vdisk private mode & Standard mode 
+Write cache : Ram overflow to disk
+sql sever : reduendent failover db, already on availability
+Boot : Pxe boot with dhcp and pxe boot
+Load balance : Round robin
+Nic teaming for pvs servers
+Dedicated vlan
+vdisk : shared storage nas or san
+streamprocess.log & Citrixpvs.log
+stream and soap services in pvs
+target device start 
+- pxe boot 
+- dhcp broadcast 
+- dhcp server provide ip, subnet, gateway,tftp server details & boot file name ardbp32.bin - 
+- target device connect tftp server 
+- download ardbp32.bin file 
+- connect pvs server 
+- request vdisk 
+- pvs checks db and assign related vdisk 
+- vdisk stream to target 
+- target set write cache to its ram
+- boots os as stream 
+network pxe boot - dhcp - tftp - pvs server - db - stream os
+
+- 
