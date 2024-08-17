@@ -170,4 +170,8 @@ target device start
 - boots os as stream 
 network pxe boot - dhcp - tftp - pvs server - db - stream os
 
-- 
+- 54321 : stream
+- 1433 : sql
+- 67, 68 : dhcp
+- 69 : tftp
+- accounts : vmware admin access , sql instace dbowner,
