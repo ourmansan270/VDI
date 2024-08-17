@@ -174,4 +174,10 @@ network pxe boot - dhcp - tftp - pvs server - db - stream os
 - 1433 : sql
 - 67, 68 : dhcp
 - 69 : tftp
+- 6910 : pvs - target
 - accounts : vmware admin access , sql instace dbowner,
+
+Pxechecker
+
+
+
